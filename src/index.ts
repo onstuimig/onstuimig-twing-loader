@@ -57,6 +57,7 @@ export default async function (this: loader.LoaderContext, source: string) {
     this.addDependency(slash(environmentModulePath));
 
     // require takes module name separated with forward slashes
+    delete require.cache[require.resolve(slash(environmentModulePath))]; // Make sure the module is recreated every time
     let environment: TwingEnvironment = require(slash(environmentModulePath));
     let loader = environment.getLoader();
 
@@ -101,14 +102,14 @@ let loadTemplate = () => env.loadTemplate('${key}');
 module.exports = (context = {}) => {
     return loadTemplate().then((template) => template.render(context));
 };`);
-
+        
         callback(null, parts.join('\n'));
     } else {
         environment.setLoader(new TwingLoaderChain([
+            loader,
             new PathSupportingArrayLoader(new Map([
                 [resourcePath, source]
-            ])),
-            loader
+            ]))
         ]));
 
         environment.on('template', (name: string, from: TwingSource) => {
@@ -117,6 +118,10 @@ module.exports = (context = {}) => {
               .catch((e) => {});
         });
 
-        callback(null, `module.exports = ${JSON.stringify(await environment.render(resourcePath, renderContext))};`);
+        try {
+            callback(null, `module.exports = ${JSON.stringify(await environment.render(resourcePath, renderContext))};`);
+        } catch (error) {
+            callback(error);
+        }
     }
 };
