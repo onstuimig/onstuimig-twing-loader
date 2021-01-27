@@ -1,24 +1,26 @@
-# twing-loader
+# onstuimig-twing-loader
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 
 Webpack loader for Twig templates, based on [Twing](https://www.npmjs.com/package/twing).
 
+> Based on [twing-loader](https://github.com/NightlyCommit/twing-loader)
+
 ## Prerequisites
 
 * Webpack 4
-* Twing 3.0.1
+* Twing 5.0.0
 
 ## Installation
 
-`npm install twing-loader`
+`npm install onstuimig-twing-loader`
 
 ## Usage
 
-twing-loader comes with two available behaviors. Depending on your need, you can use one or the other by setting the `renderContext` option accordingly.
+onstuimig-twing-loader comes with two available behaviors. Depending on your need, you can use one or the other by setting the `renderContext` option accordingly.
 
 ### Render at runtime
 
-By default, twing-loader transforms a Twig template to a function that, when called with some optional data, renders the template:
+By default, onstuimig-twing-loader transforms a Twig template to a function that, when called with some optional data, renders the template:
 
 <sub>webpack.config.js</sub>
 
@@ -32,7 +34,7 @@ module.exports = {
                 test: /\.twig$/,
                 use: [
                     {
-                        loader: 'twing-loader',
+                        loader: 'onstuimig-twing-loader',
                         options: {
                             environmentModulePath: require.resolve('./environment.js')
                         }
@@ -74,7 +76,7 @@ This behavior, known as _render at runtime_, comes at the cost of having Twing a
 
 ### Render at compile time
 
-When `renderContext` is _defined_, twing-loader transforms a Twig template to the result of the template rendering:
+When `renderContext` is _defined_, onstuimig-twing-loader transforms a Twig template to the result of the template rendering:
 
 <sub>webpack.config.js</sub>
 
@@ -88,7 +90,7 @@ module.exports = {
                 test: /\.twig$/,
                 use: [
                     {
-                        loader: 'twing-loader',
+                        loader: 'onstuimig-twing-loader',
                         options: {
                             environmentModulePath: require.resolve('./environment.js'),
                             renderContext: {
