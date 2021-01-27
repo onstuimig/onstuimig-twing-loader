@@ -18,7 +18,7 @@
     "webpack",
     "webpack-loader"
   ],
-  "author": "Nicolas REINE",
+  "author": "Onstuimig",
   "contributors": [
     {
       "name": "Eric MORAND",
@@ -37,12 +37,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/NightlyCommit/twing-loader"
+    "url": "https://github.com/onstuimig/onstuimig-twing-loader"
   },
   "bugs": {
-    "url": "https://github.com/NightlyCommit/twing-loader/issues"
+    "url": "https://github.com/onstuimig/onstuimig-twing-loader/issues"
   },
-  "homepage": "https://github.com/NightlyCommit/twing-loader#readme",
+  "homepage": "https://github.com/onstuimig/onstuimig-twing-loader#readme",
   "description": "Webpack loader for Twig templates, based on Twing.",
   "dependencies": {
     "crypto-js": "^4.0.0",
